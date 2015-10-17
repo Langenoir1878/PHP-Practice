@@ -22,16 +22,34 @@ $noteRepo = new \yzhan214\as2\FileNoteRepository();
 $note = $noteRepo->getNoteById($_POST['id']);
 //entering the html sections
 ?>
-
-<h1> Update Note</h1>
+<style>
+.lay_content {
+    background-image: url("bg.png");
+    background-size: 1878px 1245px;
+    background-color: black;
+ 	font-style: oblique;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.left_side {
+	margin-left: 20px;
+	width: 98%;
+    border:1px solid #00FF00;
+}
+</style>
+<body background = "bg.png">
+	<div class="lay_content">
+<h1><font color="white"> Update Note</font></h1>
 <form method = "post" action = "edit.php">
 	<input type = "hidden" name = "noteId" value = "<?php print $_POST['id'];?>">
-	<label> Subject: <input type = "text" name="subject_line" value = "<?php print $note->getSubject_line(); ?>"></label>
-	<br>
-	<label> Author: <input type = "text" name="author_name" value = "<?php print $note->getAuthor_name(); ?>"></label>
-	<br>
-	<label> Note: <input type = "text" name="note_body" value = "<?php print $note->getNote_body(); ?>"></label>
-	<br>
+	<label><font color="white"> Subject: <input type = "text" name="subject_line" value = "<?php print $note->getSubject_line(); ?>"></font></label>
+	<br><br>
+	<label><font color="white"> Author: <input type = "text" name="author_name" value = "<?php print $note->getAuthor_name(); ?>"></font></label>
+	<br><br>
+	<label><font color="white"> Note: <input type = "text" name="note_body" value = "<?php print $note->getNote_body(); ?>"></font></label>
+	<br><br>
     <?php
     /*
      * add the labels for char_count & date_dynamics below
@@ -46,9 +64,9 @@ $note = $noteRepo->getNoteById($_POST['id']);
     ?>
 
     <input type="submit" value="Save">
-	
-</form>
 
+</form></div>
+</body>
 
 
 
@@ -166,12 +184,18 @@ $note = $noteRepo->getNoteById($_POST['id']);
 	<!DOCTYPE html>
  	<html lang="en">
  	<head>
-		<meta charset="UTF-8">
-		<title> Web Editor</title>
-	</head>
-	<body>
-		<h1>No Note Selected</h1>
-		<p><a href = "Index.php"> Back to the note dashboard</a></p>
+		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<title> En? </title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+</head>
+<body>
+	<div style="text-align: center">
+		<br><br>
+	<h1>No Note Selected</h1>
+	<br>
+	<img src = "no_dino.png">
+	<br><br>
+	<p><a href = "Index.php"> Back to the Note Dashboard </a></p>
 	</body>
  	</html>
 <?php endif; ?>

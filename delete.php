@@ -31,12 +31,16 @@ $noteRepo = new \yzhan214\as2\FileNoteRepository();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 	<title> Delete Note</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
 </head>
 <body>
-	<h1>Note deleted</h1>
-	<p><a href = "Index.php"> Back to the note dashboard</a></p>
+	<div style="text-align: center"><br><br>
+	<h1>Note swallowed...</h1>
+	<br>
+	<img src = "hahaDino.png" width="570" height="300">
+	<p><a href = "Index.php"> HEE HEE ! Go back and fetch me more ~ </a></p>
 </body>
 </html>
 
@@ -47,12 +51,18 @@ $noteRepo = new \yzhan214\as2\FileNoteRepository();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title> My Note </title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<title> En? </title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
 </head>
 <body>
+	<div style="text-align: center">
+		<br><br>
 	<h1>No Note Selected</h1>
-	<p><a href = "Index.php"> Back to the note dashboard</a></p>
+	<br>
+	<img src = "no_dino.png">
+	<br><br>
+	<p><a href = "Index.php"> Back to the Note Dashboard </a></p>
 </body>
 </html>
 

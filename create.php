@@ -14,8 +14,9 @@ require_once 'FileNoteRepository.php';
 //Shortend Post variable names if set
 $noteSubject = isset($_POST['subject_line']) ? $_POST['subject_line'] : '';
 $noteAuthor = isset($_POST['author_name']) ? $_POST['author_name'] : '';
-$noteText = isset($_POST['noteText']) ? $_POST['note_body'] : '';
-
+$noteText = isset($_POST['note_body']) ? $_POST['note_body'] : '';
+//test var to store the strlen of the text body
+$count = strlen(htmlspecialchars($noteText));
 
 
 //validation of required form fields
@@ -36,12 +37,39 @@ if (empty($noteAuthor)){
 
 <!DOCTYPE html>
 <html lang="en">
+<style>
+.lay_content {
+    background-image: url("bg.png");
+    background-size: 1878px 1245px;
+    background-color: black;
+ 	font-style: oblique;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.left_side {
+	margin-left: 20px;
+	width: 98%;
+    border:1px solid #00FF00;
+}
+</style>
+
 <head>
-	<meta charset = "UTF-8">
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 	<title> Add New Note </title>
+	<div style="text-align:left;">
+<a href="index.php" class="btn btn-primary btn-lg active" role="button"> <h2> &nbsp;&nbsp; Note Dashboard </h2> </a>
+</div>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+	<div class = "lay_content" align = "center" >
+		<font color = "#FFFFFF"><h1>Create Something Awesome</h1></font>
+	</div>
+
+
 </head>
 
-<body>
+<body background = "bg.png">
 
 <?php if($_SERVER['REQUEST_METHOD'] == 'POST'): ?>
 	<?php if($formIsValid): ?>
@@ -50,46 +78,64 @@ if (empty($noteAuthor)){
 //instantiate the repository and obj
 $noteRepo = new \yzhan214\as2\FileNoteRepository();
 $note = new \yzhan214\as2\Note();
+
+
 //set vars
 $note->setSubject_line($noteSubject);
 $note->setAuthor_name($noteAuthor);
 $note->setNote_body($noteText);
 //char_count,
+$note->setChar_count($count);
 //date_dynamics
 
 //save obj by calling saveNote func
 $noteRepo->saveNote($note);
 	?>
-		<h1>New Note Added</h1>
+	
+	<div style="text-align: center;">
+
+		<br><br><br>
+		<h1><font color="#00FF00"> - New Note Added - </font></h1>
+		<br>
 		<p>Subject: <?php print $noteSubject; ?></p><br>
 		<p>Author: <?php print $noteAuthor; ?></p><br>
 		<p>Note: <?php print $noteText; ?></p><br>
+		
 		<?php
     	/*
-    	 * display char_count
-    	 * display date
-     	 *
+    	 * display char_count in html:
+    	 * <p>Char_count <?php print $char_count; ?></p><br>
      	 */
 
 		?>
-	
-		<p><a href="Index.php">Note Dashboard</a></p>
+		
+		<p><font color="red">Total characters: <?php print $count; ?></font></p><br>
+	</div>
+
+		
+		
   
 	<?php else: ?>
 
-	<h1>Create New Note</h1>
+	<div class="left_side">
+	<h1> &nbsp;&nbsp; Create New Note</h1>
 	<form action = "create.php" method = "post">
 
-	<label><font color = "red">* </font> 
+	<label><font color = "red">&nbsp;&nbsp; * </font> 
 		Subject : <input type = "text" name = "subject_line" value = "<?php print $noteSubject; ?>">
 	</label><?php print $subjectErr; ?>
-	<br><br>
-	<label><font color = "red">* </font> 
+	<br>
+	<label><font color = "red">&nbsp;&nbsp; * </font> 
 		Author name : <input type = "text" name = "author_name" value = "<?php print $noteAuthor; ?>">
 	</label><?php print $authorErr; ?>
-	<br><br>
+	<br>
     <label>
-		Note : <input type = "text" name="note_body" value ="<?php print $noteText; ?>">
+		
+		<p> &nbsp;&nbsp;&nbsp;&nbsp; <textarea name="note_body" value ="<?php print $noteText; ?>"></textarea></p>
+	</label>
+	<br><br>
+	<label>
+		&nbsp;&nbsp; Total characters: <?php print $count; ?>
 	</label>
 	<br><br>
 
@@ -102,33 +148,26 @@ $noteRepo->saveNote($note);
 
 	?>
 
-    <input type = "submit" value = "Save">
-
+    &nbsp;&nbsp;&nbsp;&nbsp; <input type = "submit" value = "Save">
+</div>
    </form>
 	  <?php endif; ?>
 <?php else: ?>
-	
-	<h1>Create New Note</h1>
+	<div class="left_side">
+		<br><br>
+	<h1>&nbsp;&nbsp; Create New Note</h1>
 	<form action="create.php" method = "POST">
-	<p> ( Notice: <font color = "red">* </font> Required )</p>
-	<label><font color = "red">* </font> Subject : <input type = "text" name="subject_line"></label>
+	<p> &nbsp;&nbsp;&nbsp;( Notice: <font color = "red">* </font> Required )</p>
+	<label><font color = "red">&nbsp;&nbsp; * </font> Subject : <input type = "text" name="subject_line"></label>
 	<br><br>
-	<label><font color = "red">* </font> Author name : <input type = "text" name="author_name"></label>
+	<label><font color = "red">&nbsp;&nbsp; * </font> Author name : <input type = "text" name="author_name"></label>
 	<br><br>
-    <label> Note : <input type = "text" name="note_body" ></label>
+    <label> &nbsp;&nbsp;&nbsp;&nbsp; <textarea name="note_body" cols = "57" rows = "17" ></textarea></label>
 	<br><br>
 
-	<?php
-    /*
-     * display char_count
-     * display date
-     *
-     */
-
-	?>
-
-    <input type = "submit" value = "Save">
-	</form>
+    &nbsp;&nbsp;&nbsp;&nbsp; <input type = "submit" value = "Save">
+    <br><br>
+	</form></div>
 
 <?php endif; ?>
 

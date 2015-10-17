@@ -18,8 +18,9 @@ class Note{
 	private $id;//will be uniqid();
 	private $note_body = "";
 
-    //private $char_count = "", $date_dynamics = "";
-    
+    private $char_count;
+    private $create_date;
+    private $modified_date;
     /*
 	function _construct($aSubject, $aAuthor, $aID, $aNoteBody, $aCount, $aDate){
 		$this->subject_line = $aSubject;
@@ -39,6 +40,9 @@ class Note{
     public function __construct(){
         $this->id = uniqid();
         //generate the unique id for each note obj
+        date_default_timezone_set('America/Chicago');
+        $this->create_date = date('j M Y - h:i:s A');
+        $this->modified_date = date('j M Y - h:i:s A');
     }
 
 
@@ -58,17 +62,25 @@ class Note{
     public function getNote_body(){
     	return $this->note_body;
     }
-    /*
+   
     public function getChar_count(){
     	return $this->char_count;
-    }
+    } 
+
+    /*
     public function getDate_dynamics(){
     	return $this->date_dynamics;
     }
     
     */
-
-
+    public function getModified_date(){
+        //date_default_timezone_set('America/Chicago');
+        //return $this->last_date = date('j M Y - h:i:s A');
+        return $this->modified_date;
+    }
+    public function getCreate_date(){
+        return $this->create_date;
+    }
 
     /*
      *@mutators to set values into vars except the id
@@ -85,8 +97,13 @@ class Note{
     	$this->note_body = $nb;
     }
 
+    public function setModified_date($md){
+        $this->modified_date = $md;
+    }
     
-
+    public function setChar_count($cc){
+        $this->char_count = $cc;
+    }
 
     /*
      * class function
